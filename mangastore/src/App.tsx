@@ -3,6 +3,9 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
+import { useAppDispatch, useAppSelector } from "./app/hooks";
+import { useEffect } from "react";
+import { cartTotal } from "./features/shopSlice";
 
 const Layout = () =>{
   return (
@@ -32,6 +35,12 @@ const router = createBrowserRouter([
 ])
 
 function App(){
+  const {cartItems} = useAppSelector((state) => state.shop)
+  const dispatch = useAppDispatch()
+
+  useEffect(() =>{
+    dispatch(cartTotal())
+  }, [cartItems, dispatch])
   return <RouterProvider router={router}/>
 }
 

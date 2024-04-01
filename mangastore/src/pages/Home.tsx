@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { useMangasQuery } from "../features/mangaApi";
 import { FaCartPlus } from "react-icons/fa";
+import { useAppDispatch } from "../app/hooks";
+import { addToCart } from "../features/shopSlice";
 
 function Home() {
   const { data } = useMangasQuery();
   const [search, setSearch] = useState("");
   const [sortData, setSortData] = useState("");
+  const dispatch = useAppDispatch()
 
   const mangas = sortData === "low" ? data && data.slice().sort((a,b) => a.price  - b.price) :
                  sortData === "high" ? data && data.slice().sort((a,b) => b.price - a.price) :
@@ -17,6 +20,8 @@ function Home() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
     setSortData(e.target.id)
   }
+
+
 
 
   return (
@@ -132,7 +137,7 @@ function Home() {
                 />
                 <h3 className="fs-5 my-4">{manga.title}</h3>
                 <h2 className="lead fw-bold fs-4 my-2">${manga.price}</h2>
-                <button className="btn btn-danger text-decoration-none ms-2 my-4">
+                <button className="btn btn-danger text-decoration-none ms-2 my-4" onClick={() => dispatch(addToCart(manga))}>
                   <FaCartPlus className="me-2 fs-5" />
                   Add to cart
                 </button>
