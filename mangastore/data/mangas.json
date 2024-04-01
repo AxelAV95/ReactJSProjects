@@ -1,0 +1,67 @@
+{
+    "mangas": [
+        {
+            "id": 1,
+            "title": "Monster",
+            "price": 50,
+            "imgUrl": "./images/monster.jpg",
+            "quantity": 1
+        },
+        {
+            "id": 2,
+            "title": "Attack on Titan",
+            "price": 70,
+            "imgUrl": "./images/attack-on-titan.jpg",
+            "quantity": 1
+        },
+        {
+            "id": 3,
+            "title": "Seven Deadly Sins",
+            "price": 65,
+            "imgUrl": "./images/seven-deadly-sins.jpg",
+            "quantity": 1
+        },
+        {
+            "id": 4,
+            "title": "Akame Ga Kill",
+            "price": 40,
+            "imgUrl": "./images/akame-ga-kill.jpg",
+            "quantity": 1
+        },
+        {
+            "id": 5,
+            "title": "Jujutsu Kaisen",
+            "price": 60,
+            "imgUrl": "./images/jujutsu-kaisen.jpg",
+            "quantity": 1
+        },
+        {
+            "id": 6,
+            "title": "The Promised Neverland",
+            "price": 80,
+            "imgUrl": "./images/the-promised-neverland.jpg",
+            "quantity": 1
+        },
+        {
+            "id": 7,
+            "title": "Hunter x Hunter",
+            "price": 30,
+            "imgUrl": "./images/hxh.jpg",
+            "quantity": 1
+        },
+        {
+            "id": 8,
+            "title": "Vinland Saga",
+            "price": 44,
+            "imgUrl": "./images/vinland-saga.jpg",
+            "quantity": 1
+        },
+        {
+            "id": 9,
+            "title": "Fire Force",
+            "price": 35,
+            "imgUrl": "./images/fire-force.jpg",
+            "quantity": 1
+        }
+    ]
+}

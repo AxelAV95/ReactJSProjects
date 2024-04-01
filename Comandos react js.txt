@@ -1,0 +1,7 @@
+npm create vite@latest .
+npm install
+npm run dev
+
+Instalación de librerías
+npm install react-router-dom react-redux @reduxjs/toolkit json-server
+npm install bootstrap react-icons
