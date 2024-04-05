@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { InitialState } from "../interfaces/InitialState";
+import { Manga } from "../interfaces/Manga";
 
 const initialState : InitialState= {
     cartItems: [],
@@ -31,10 +32,31 @@ const shopSlice = createSlice({
 
             state.quantity = quantity
             state.total = total
+        },
+        removeFromCart: (state: InitialState, action: PayloadAction<number>) =>{
+            state.cartItems = state.cartItems.filter((item) => item.id !== action.payload)
+        },
+        increase: (state: InitialState, action: PayloadAction<{id: number}>) =>{
+            const cartItem = state.cartItems.find((item) =>item.id ===action.payload.id)
+            if(cartItem){
+                cartItem.quantity = cartItem.quantity + 1
+            }
+        },
+        decrease: (state: InitialState, action: PayloadAction<{id: number}>) =>{
+            const cartItem = state.cartItems.find((item) =>item.id ===action.payload.id)
+            if(cartItem){
+                cartItem.quantity = cartItem.quantity - 1
+            }
+        },
+        clearCart: (state: InitialState) => {
+            return {
+                ...state,
+                cartItems: []
+            }
         }
 
     }
 })
 
-export const {addToCart,cartTotal } = shopSlice.actions
+export const {addToCart,cartTotal, removeFromCart, increase, decrease, clearCart } = shopSlice.actions
 export default shopSlice.reducer

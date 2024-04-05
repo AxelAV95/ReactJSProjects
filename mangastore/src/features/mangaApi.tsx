@@ -3,10 +3,10 @@ import { Manga } from "../interfaces/Manga";
 
 export const mangasApi = createApi({
     reducerPath: "mangasApi",
-    baseQuery: fetchBaseQuery({baseUrl: "http://localhost:8000"}),
+    baseQuery: fetchBaseQuery({baseUrl: "https://api.jsonbin.io/v3/b/66106a88acd3cb34a8340646?meta=false"}),
     endpoints: (builder) =>({
         mangas: builder.query<Manga[], void>({
-            query: () => "/mangas"
+            query: () => ""
         })
     })
 })
