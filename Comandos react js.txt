@@ -6,3 +6,18 @@ Instalación de librerías
 npm install react-router-dom react-redux @reduxjs/toolkit json-server
 npm install bootstrap react-icons
 npm i react-toastify
+
+----------------------------
+npm install express mongoose dotenv
+npm install -D nodemon
+npm install bcrypt jsonwebtoken express-validator
+
+npm install multer
+
+Express: Express.js es un framework web de Node.js minimalista y flexible que proporciona un conjunto robusto de características para desarrollar aplicaciones web y APIs. Express simplifica la creación de rutas, manejo de solicitudes y respuestas HTTP, middleware y mucho más. Es una opción popular para construir aplicaciones web en Node.js debido a su simplicidad y rendimiento.
+
+Mongoose: Mongoose es una biblioteca de modelado de objetos MongoDB para Node.js. Facilita la interacción con una base de datos MongoDB al proporcionar una capa de abstracción sobre las operaciones CRUD (Crear, Leer, Actualizar, Borrar), validación de datos, definición de esquemas y mucho más. Mongoose simplifica la integración de MongoDB en aplicaciones Node.js y facilita la manipulación de datos.
+
+dotenv: dotenv es un módulo que facilita la carga de variables de entorno desde un archivo .env en una aplicación Node.js. Las variables de entorno son útiles para almacenar información sensible como credenciales de bases de datos, claves API, etc., sin necesidad de exponerlas directamente en el código fuente. Esto mejora la seguridad y la portabilidad de la aplicación.
+
+nodemon: nodemon es una herramienta de utilidad que ayuda en el desarrollo de aplicaciones Node.js reiniciando automáticamente la aplicación cuando detecta cambios en los archivos de origen. Esto elimina la necesidad de reiniciar manualmente el servidor cada vez que se realizan cambios en el código, lo que agiliza el proceso de desarrollo y mejora la productividad del desarrollador.
