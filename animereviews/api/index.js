@@ -8,8 +8,10 @@ const fs = require("fs")
 const app = express()
 
 const protectAuth = require("./middleware/protectAuth")
+const cors = require("cors")
 
 app.use(express.json())
+app.use(cors())
 
 const storage = multer.diskStorage({
     destination: (_,__, cb) =>{
