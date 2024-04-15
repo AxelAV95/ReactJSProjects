@@ -1,39 +1,45 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link, Navigate, useNavigate } from "react-router-dom"
 import { useState } from "react"
-import {useDispatch} from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { register } from "../features/authSlice"
 
 function Register() {
 
+    const user = useSelector((state) => state.auth.data)
+    const error = useSelector((state) => state.auth.error)
     const [inputs, setInputs] = useState({
         username: "",
         email: "",
         password: ""
     })
 
-    const handleChange = (e) =>{
-        setInputs((prevState) =>({
+    const handleChange = (e) => {
+        setInputs((prevState) => ({
             ...prevState,
             [e.target.name]: e.target.value
-        })) 
+        }))
     }
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const handleSubmit = async(e) =>{
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
         const data = await dispatch(register(inputs))
         console.log(data)
 
-        if(data.payload && "token" in data.payload){
+        if (data.payload && "token" in data.payload) {
             window.localStorage.setItem("token", data.payload.token)
+            navigate("/")
         }
 
-        navigate("/")
+        // navigate("/")
     }
 
+    if (user && window.localStorage.getItem("token")) {
+        return <Navigate to="/" />
+    }
     return (
         <div className="container-lg my-5">
             <div className="text-center align-items-center align-content-center">
@@ -42,16 +48,39 @@ function Register() {
                         <h4 className="text-secondary fw-bold fs-3 mb-5">Register</h4>
 
                         <div className="mb-3">
-                            <input type="text" placeholder="Username" className="form-control" name="username" required value={inputs.username} onChange={handleChange}/>
+                            <input type="text" placeholder="Username" className="form-control" name="username" required value={inputs.username} onChange={handleChange} />
+                            {error && Array.isArray(error) && error.some(err => err.path === "username") && (
+
+                                <div className="alert alert-danger">
+                                    {error.find(err => err.path === "username").msg}
+                                </div>
+                            )}
                         </div>
 
                         <div className="mb-3">
-                            <input type="email" placeholder="Email Address" className="form-control" name="email" required value={inputs.email} onChange={handleChange}/>
+                            <input type="email" placeholder="Email Address" className="form-control" name="email" required value={inputs.email} onChange={handleChange} />
+                            {error && Array.isArray(error) && error.some(err => err.path === "email") && (
+
+                                <div className="alert alert-danger">
+                                    {error.find(err => err.path === "email").msg}
+</div>
+                            )}
                         </div>
 
                         <div className="mb-3">
-                            <input type="password" placeholder="Password" className="form-control" name="password" required value={inputs.password} onChange={handleChange}/>
+                            <input type="password" placeholder="Password" className="form-control" name="password" required value={inputs.password} onChange={handleChange} />
+                            {error && Array.isArray(error) && error.some(err => err.path === "password") && (
+
+                                <div className="alert alert-danger">
+                                    {error.find(err => err.path === "password").msg}
+                                </div>
+                            )}
                         </div>
+
+                        {error && typeof error === "string" && error === "Already created an account" && (
+
+                            <div className="alert alert-danger">{error}</div>
+                        )}
 
                         <div className="mb-4">
                             <p>Already a Member? <Link to="/login">Sign In</Link></p>

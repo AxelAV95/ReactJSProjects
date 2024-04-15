@@ -1,4 +1,4 @@
-import { Outlet, RouterProvider, createBrowserRouter} from "react-router-dom"
+import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom"
 import NavBar from "./components/NavBar"
 import Footer from "./components/Footer"
 import Home from "./pages/Home"
@@ -6,14 +6,17 @@ import Register from "./pages/Register"
 import Login from "./pages/Login"
 import Review from "./pages/Review"
 import Write from "./pages/Write"
+import { useEffect } from "react"
+import { useDispatch } from "react-redux"
+import axios from "./axios"
+import { account } from "./features/authSlice"
 
-
-const Layout = ()=>{
+const Layout = () => {
   return (
     <>
-    <NavBar/>
-    <Outlet/>
-    <Footer/>
+      <NavBar />
+      <Outlet />
+      <Footer />
     </>
   )
 }
@@ -21,34 +24,44 @@ const Layout = ()=>{
 
 const router = createBrowserRouter([
   {
-    element: <Layout/>,
-    children:[
+    element: <Layout />,
+    children: [
       {
         path: "/",
-        element: <Home/>
+        element: <Home />
       },
       {
         path: "/register",
-        element: <Register/>
+        element: <Register />
       },
       {
         path: "/login",
-        element: <Login/>
+        element: <Login />
       },
       {
         path: "/review/:id",
-        element: <Review/>
+        element: <Review />
       },
       {
         path: "/write",
-        element: <Write/>
+        element: <Write />
       },
     ]
   }
 ])
 
-function App(){
-  return <RouterProvider router={router}/>
+function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const token = localStorage.getItem("token")
+    if (token) {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
+      dispatch(account())
+    }
+  },[dispatch])
+
+  return <RouterProvider router={router} />
 }
 
 export default App;
