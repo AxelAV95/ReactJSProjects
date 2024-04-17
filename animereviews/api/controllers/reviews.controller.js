@@ -83,7 +83,7 @@ const getReview = async (req, res) => {
         {$inc: {views: 1}},
         {returnDocument: "after"}
     
-    );
+    ).populate("author", "-password").exec();
 
     if(!review){
         return res.status(404).json({message: "Review not found"})

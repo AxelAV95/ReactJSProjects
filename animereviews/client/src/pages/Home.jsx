@@ -1,8 +1,22 @@
 import { Link } from "react-router-dom"
 import HeroImg from "../assets/home.jpg"
 import DefaultPoster from "../assets/poster.jpg"
+import { useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { fetchReviews } from "../features/reviewsSlice"
+
 
 function Home() {
+
+    const { reviews, status } = useSelector((state) => state.reviews)
+    const dispatch = useDispatch()
+
+
+    useEffect(() => {
+        console.log(reviews)
+        dispatch(fetchReviews())
+    }, [dispatch])
+
     return (
         <div className="container-lg my-5">
             <div className="row align-items-center align-content-center border-bottom border-primary">
@@ -32,28 +46,37 @@ function Home() {
                     </div>
                 </div>
 
+                {status === "loading" &&
+                    (
+                        <div className="text-center mt-5">
+                            <h3 className="text-secondary fw-bold fs-4">Loading...</h3>
+                        </div>
+
+                    )}
+
+
+                {status === "error" &&
+                    (
+                        <div className="text-center mt-5">
+                            <h3 className="text-secondary fw-bold fs-4">Oops something went wrong!</h3>
+                        </div>
+
+                    )}
+
                 <div className="row">
-                    <div className="col-md-6 col-lg-4 text-center text-decoration-none">
-                        <div className="shadow rounded">
-                            <img src={DefaultPoster} alt="" height="300px" width="200px" />
+
+                    {status === "success" && reviews.map((review) => (
+                        <div key={review._id} className="col-md-6 col-lg-4 text-center text-decoration-none">
+                            <div className="shadow rounded">
+                                <img src={review.poster ? `http://localhost:5000/${review.poster}` : DefaultPoster} alt={review.title} height="300px" width="200px" />
+                            </div>
+                            <h2 className="lead fw-bold my-4">{review.title}</h2>
+                            <Link to={`/review/${review._id}`}><button className="btn btn-primary text-white lead fw-bold mb-5">Read Review</button></Link>
                         </div>
-                        <h2 className="lead fw-bold my-4">Story 1</h2>
-                        <Link to="/review/:id"><button className="btn btn-primary text-white lead fw-bold mb-5">Read Review</button></Link>
-                    </div>
-                    <div className="col-md-6 col-lg-4 text-center text-decoration-none">
-                        <div className="shadow rounded">
-                            <img src={DefaultPoster} alt="" height="300px" width="200px" />
-                        </div>
-                        <h2 className="lead fw-bold my-4">Story 2</h2>
-                        <Link to="/review/:id"><button className="btn btn-primary text-white lead fw-bold mb-5">Read Review</button></Link>
-                    </div>
-                    <div className="col-md-6 col-lg-4 text-center text-decoration-none">
-                        <div className="shadow rounded">
-                            <img src={DefaultPoster} alt="" height="300px" width="200px" />
-                        </div>
-                        <h2 className="lead fw-bold my-4">Story 3</h2>
-                        <Link to="/review/:id"><button className="btn btn-primary text-white lead fw-bold mb-5">Read Review</button></Link>
-                    </div>
+                    ))}
+
+
+
                 </div>
             </div>
         </div>
