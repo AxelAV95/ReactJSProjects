@@ -4,6 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
 	html {
 		font-family: "Roboto", sans-serif;
@@ -25,3 +26,21 @@
 		@apply text-sky-500 hover:underline;
 	}
 }
+
+@media screen and (max-width: 991px) {
+	.flex-container {
+	  flex-direction: column;
+	}
+  }
+  @media (max-width: 744px) {
+	.flex {
+	  justify-content: center;
+	}
+  }
+  @media (max-width: 743px) {
+	.width-sm {
+	  width: auto;
+	  max-width: 90vw; /* Por ejemplo, ajusta este valor según tus necesidades */
+	}
+  }  
+  
