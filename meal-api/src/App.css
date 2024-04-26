@@ -1,0 +1,64 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.items-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.card {
+  background: rgb(255, 249, 249);
+  font-size: 12px;
+  color: rgb(68, 68, 68);
+  margin: 10px;
+  padding: 30px;
+  transition: 1s ease;
+  cursor: pointer;
+  flex: 1 1 calc(33.33% - 20px);
+}
+
+.card:hover {
+  transform: scale(1.1);
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  font-family: sans-serif;
+  margin-top: 20px;
+}
+
+p {
+  font-weight: bold;
+}
+
+img {
+  border-radius: 5px;
+  height: 200px;
+  width: 100%; 
+}
+
+@media screen and (max-width: 1024px) { /* Cuando el ancho de la pantalla sea 1024px o menos (pantallas medianas) */
+  .card {
+    flex-basis: calc(50% - 20px); /* Esto hará que las tarjetas ocupen la mitad del ancho del contenedor en pantallas medianas */
+  }
+}
+
+@media screen and (max-width: 768px) { /* Cuando el ancho de la pantalla sea 768px o menos (pantallas pequeñas) */
+  .card {
+    flex-basis: calc(100% - 20px); /* Esto hará que las tarjetas ocupen todo el ancho del contenedor en pantallas pequeñas */
+  }
+}
+
+@media screen and (min-width: 1200px) { /* Cuando el ancho de la pantalla sea 1200px o más (pantallas grandes) */
+ 
+  .card {
+    flex-basis: calc(33.33% - 20px); /* Esto hará que las tarjetas ocupen un tercio del ancho del contenedor en pantallas grandes */
+  }
+
+}
