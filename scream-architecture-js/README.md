@@ -1,8 +1,27 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Estructura del proyecto
+ ```bash
+src/
+|-- features/
+|   |-- auth/
+|   |   |-- api/              # Lógica de la API para autenticación
+|   |   |-- components/       # Componentes específicos de autenticación
+|   |   |-- hooks/            # Hooks específicos de autenticación
+|   |   |-- slices/           # Slices de Redux para autenticación
+|   |   |-- pages/            # Páginas relacionadas con autenticación
+|   |   |-- index.js          # Exportaciones públicas de la feature
+|   |-- products/
+|   |   |-- api/              # Lógica de la API para productos
+|   |   |-- components/       # Componentes específicos de productos
+|   |   |-- hooks/            # Hooks específicos de productos
+|   |   |-- slices/           # Slices de Redux para productos
+|   |   |-- pages/            # Páginas relacionadas con productos
+|   |   |-- index.js          # Exportaciones públicas de la feature
+|-- shared/
+|   |-- api/                  # Configuración base de Axios
+|   |-- components/           # Componentes reutilizables (ej: Header, Footer)
+|   |-- hooks/                # Hooks reutilizables
+|   |-- utils/                # Funciones utilitarias
+|-- App.js                    # Componente principal
+|-- store.js                  # Configuración de Redux
+|-- index.js                  # Punto de entrada
+```
